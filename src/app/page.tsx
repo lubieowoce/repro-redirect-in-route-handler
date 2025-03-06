@@ -42,6 +42,22 @@ export default function Home() {
         >
           POST plaintext
         </SendRequest>
+        <div style={{ height: "0.5em" }}></div>
+        <SendRequest
+          action={() =>
+            fetch("/redirecting-handler", {
+              method: "POST",
+              headers: {
+                // this what the browser would set by default, but i'm adding it here to be explicit.
+                "content-type":
+                  "application/x-www-form-urlencoded;charset=UTF-8",
+              },
+              body: new URLSearchParams({ what: "ever" }),
+            })
+          }
+        >
+          POST urlencoded (with charset=utf-8)
+        </SendRequest>
       </section>
       <br />
       <section>
@@ -66,6 +82,9 @@ export default function Home() {
           action={() =>
             fetch("/redirecting-handler", {
               method: "POST",
+              headers: {
+                "content-type": "application/x-www-form-urlencoded",
+              },
               body: new URLSearchParams({ what: "ever" }),
             })
           }
